@@ -24,7 +24,7 @@ class HolidayRepositoryImpl @Inject constructor(
                 val holidayList = Gson().fromJson(json, HolidayList::class.java)
 
                 // Store holidays in Room database if needed
-                return holidayList.holidayList
+                return holidayList
             } else {
                 // Handle API error
                 return emptyList()

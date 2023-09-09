@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".DetailFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Property: Country Code -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Country Code:"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewCountryCodeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="AT"
+                android:textSize="18sp" />
+
+            <!-- Property: Date -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date:"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewDateValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="2023-01-01"
+                android:textSize="18sp" />
+
+            <!-- Property: Fixed -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fixed:"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewFixedValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="true"
+                android:textSize="18sp" />
+
+            <!-- Continue adding TextViews for other properties as needed -->
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
