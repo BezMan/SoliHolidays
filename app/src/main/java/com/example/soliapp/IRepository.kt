@@ -1,8 +1,7 @@
 package com.example.soliapp
 
-import com.example.soliapp.data.Holiday
-
 interface IRepository {
-    suspend fun getHolidays(year: Int, countryCode: String): List<Holiday>
+
+    suspend fun getHolidays(year: Int, countryCode: String): LocationState
     // Other repository methods
 }

@@ -20,16 +20,13 @@ class HolidayViewModel @Inject constructor(
     val state: LiveData<LocationState>
         get() = _state
 
-    fun fetchCountryCode() {
+    fun fetchData() {
         viewModelScope.launch {
             _state.value = LocationState.Loading
-            try {
-                // Fetch holidays for the current year and the determined country code
-                val result = repository.getHolidays(currentYear, countryData.cCode)
-                _state.value = LocationState.Success(result)
-            } catch (e: Exception) {
-                _state.value = LocationState.Error("Failed to fetch location")
-            }
+            // Fetch holidays for the current year and the determined country code
+            val result = repository.getHolidays(currentYear, countryData.cCode)
+            _state.value = result
         }
     }
+
 }
