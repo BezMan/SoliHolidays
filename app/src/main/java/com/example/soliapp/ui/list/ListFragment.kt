@@ -38,7 +38,6 @@ class ListFragment : Fragment(), MainListAdapter.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         // Set up the RecyclerView and adapter using binding.recyclerView
-        //RECYCLER
         val dividerItemDecoration = DividerItemDecoration(
             binding.recyclerView.context,
             DividerItemDecoration.VERTICAL

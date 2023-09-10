@@ -29,12 +29,11 @@ class DetailFragment : Fragment() {
         val args = DetailFragmentArgs.fromBundle(requireArguments())
         val holiday: Holiday = args.holiday
 
-        // val holiday = DetailFragmentArgs.fromBundle(requireArguments()).holiday
-
         // Use holiday data to populate UI elements in the DetailFragment
          binding.textViewCountryCodeValue.text = holiday.countryCode
          binding.textViewHolidayNameValue.text = holiday.name
          binding.textViewDateValue.text = holiday.date
+         binding.textViewFavorite.text = holiday.isFavorite.toString()
         // ...
     }
 }

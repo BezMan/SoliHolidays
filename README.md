@@ -1,6 +1,7 @@
 # ReadMe
  written by Betzalel Silver. .
 
+# Features
 - Kotlin code with MVVM architecture and Repo pattern. 
 - Dependency Injection with Dagger Hilt.
 - OkHttp for handling network calls.
@@ -9,6 +10,7 @@
 - sealed class ResponseState - for state management.
 - IRepository interface for changing repo impl easily.
 - Swipe To Refresh the page data.
+- checking saved favorites, preprocessing and syncing with remote incoming data.
 
 
 # Assumptions:

@@ -18,7 +18,4 @@ interface HolidayDao {
 
     @Delete
     fun removeFavorite(item: Holiday)
-
-
-    // Other DAO methods for insert, update, delete, etc.
 }
