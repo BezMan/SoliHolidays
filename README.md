@@ -22,4 +22,4 @@
 # Skipping due to lack of time:
 - I commented out Holiday counties data and showing partial data in detail screen.
 - tab layout, I am showing the saved items with the CheckBox view instead.
-- tests
+- tests and mocks
