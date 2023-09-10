@@ -23,28 +23,31 @@ class HolidayApiService @Inject constructor(private val okHttpClient: OkHttpClie
             .build()
 
         val response = okHttpClient.newCall(request).execute()
-        if (response.isSuccessful) {
-            val bodyString = response.body?.source()?.readString(Charsets.UTF_8)
+        val responseBody = response.body
+        if (response.isSuccessful && responseBody != null) {
+            val bodyString = responseBody.source().readString(Charsets.UTF_8)
 
-// Parse the JSON string into a JSON array
-            val jsonArray: JsonArray = JsonParser.parseString(bodyString).asJsonArray
+            if (bodyString.isNotBlank()) {
+                // Parse the JSON string into a JSON array
+                val jsonArray: JsonArray = JsonParser.parseString(bodyString).asJsonArray
 
-            val holidayList = mutableListOf<Holiday>()
-// Iterate through the JSON array
-            for (jsonElement in jsonArray) {
-                // Convert each JSON element to a JSON object and add it to the list
-                val holiday = Gson().fromJson(jsonElement, Holiday::class.java)
+                val holidayList = mutableListOf<Holiday>()
+                // Iterate through the JSON array
+                for (jsonElement in jsonArray) {
+                    // Convert each JSON element to a JSON object and add it to the list
+                    val holiday = Gson().fromJson(jsonElement, Holiday::class.java)
 //                val jsonObject = jsonElement.asJsonObject
-                holidayList.add(holiday)
+                    holidayList.add(holiday)
+                }
+
+                // Store holidays in Room database if needed
+                //
+
+                return ResponseState.Success(holidayList)
             }
 
-            // Store holidays in Room database if needed
-            //
-
-            return ResponseState.Success(holidayList)
-        } else {
-//                 Handle API error
-            return ResponseState.Error("bad response")
         }
+        // Handle API error
+        return ResponseState.Error("error with response")
     }
 }
