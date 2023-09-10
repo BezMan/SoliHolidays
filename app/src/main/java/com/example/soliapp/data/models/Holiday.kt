@@ -14,8 +14,8 @@ data class Holiday(
     val fixed: Boolean,
     val global: Boolean,
     val launchYear: Int? = null,
-    val localName: String,
-    @PrimaryKey val name: String,
+    @PrimaryKey val localName: String,
+    val name: String,
     // Other properties
     var isFavorite: Boolean = false
 

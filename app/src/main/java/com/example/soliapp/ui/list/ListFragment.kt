@@ -79,17 +79,19 @@ class ListFragment : Fragment(), MainListAdapter.OnItemClickListener {
             }
         }
 
+        fetchDataAsync()
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            fetchDataAsync()
+
+        }
+
+    }
+
+    private fun fetchDataAsync() {
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.fetchData()
         }
-
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                viewModel.fetchData()
-            }
-
-        }
-
     }
 
     override fun onItemTextClick(item: Holiday) {

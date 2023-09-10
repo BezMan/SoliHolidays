@@ -8,6 +8,10 @@ import com.example.soliapp.data.models.Holiday
 abstract class AppDatabase : RoomDatabase() {
     abstract fun holidayDao(): HolidayDao
 
+    fun getFavoriteByName(localName: String): Holiday? {
+        return holidayDao().getFavoriteByName(localName)
+    }
+
     fun saveFavorite(item: Holiday) {
         holidayDao().saveFavorite(item)
     }

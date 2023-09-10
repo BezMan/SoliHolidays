@@ -6,13 +6,12 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.soliapp.data.models.Holiday
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface HolidayDao {
 
-    @Query("SELECT * FROM holiday")
-    fun getAllHolidays(): Flow<List<Holiday>>
+    @Query("SELECT * FROM holiday WHERE localName = :localName")
+    fun getFavoriteByName(localName: String): Holiday?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveFavorite(item: Holiday)

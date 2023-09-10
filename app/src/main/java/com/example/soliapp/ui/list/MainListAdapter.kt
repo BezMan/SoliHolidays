@@ -56,7 +56,7 @@ class MainListAdapter internal constructor(private val listener: OnItemClickList
 
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Holiday>() {
             override fun areItemsTheSame(old: Holiday, new: Holiday): Boolean {
-                return old.name == new.name && old.date == new.date
+                return old.localName == new.localName && old.name == new.name && old.date == new.date
             }
 
             override fun areContentsTheSame(old: Holiday, new: Holiday): Boolean {

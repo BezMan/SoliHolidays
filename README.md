@@ -9,10 +9,14 @@
 - sealed class ResponseState - for state management.
 - IRepository interface for changing repo impl easily.
 - Swipe To Refresh the page data.
+
+
+# Assumptions:
+- holiday localName is the unique identifier.
 - 
 
-# Skipping:
-- compose ui
-- tab layout: I am showing the saved items with the CheckBox view instead.
+# Skipping due to lack of time:
+- I commented out Holiday counties data and showing partial data in detail screen.
+- tab layout, I am showing the saved items with the CheckBox view instead.
 - tests
 - 

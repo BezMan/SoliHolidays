@@ -1,6 +1,5 @@
 package com.example.soliapp.data.network
 
-import com.example.soliapp.common.ResponseState
 import com.example.soliapp.data.models.Holiday
 import com.google.gson.Gson
 import com.google.gson.JsonArray
@@ -15,12 +14,10 @@ class HolidayApiService @Inject constructor(private val okHttpClient: OkHttpClie
         private const val BASE_URL = "https://date.nager.at"
     }
 
-    fun fetchHolidays(year: Int, countryCode: String): ResponseState {
+    fun fetchHolidays(year: Int, countryCode: String): List<Holiday>? {
         val url = "$BASE_URL/api/v3/publicholidays/$year/$countryCode"
 
-        val request = Request.Builder()
-            .url(url)
-            .build()
+        val request = Request.Builder().url(url).build()
 
         val response = okHttpClient.newCall(request).execute()
         val responseBody = response.body
@@ -36,18 +33,14 @@ class HolidayApiService @Inject constructor(private val okHttpClient: OkHttpClie
                 for (jsonElement in jsonArray) {
                     // Convert each JSON element to a JSON object and add it to the list
                     val holiday = Gson().fromJson(jsonElement, Holiday::class.java)
-//                val jsonObject = jsonElement.asJsonObject
                     holidayList.add(holiday)
                 }
 
-                // Store holidays in Room database if needed
-                //
-
-                return ResponseState.Success(holidayList)
+                return holidayList
             }
 
         }
         // Handle API error
-        return ResponseState.Error("error with response")
+        return null
     }
 }
