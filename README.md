@@ -8,3 +8,7 @@
 - Room DB, Kotlin Flow in conjunction with Live Data.
 - sealed class ResponseState - for state management.
 - IRepository interface for changing repo impl easily.
+
+# Skipping:
+- tab layout: I am showing the saved items with the CheckBox view instead.
+- 
