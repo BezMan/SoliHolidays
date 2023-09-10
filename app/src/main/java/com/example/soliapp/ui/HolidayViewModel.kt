@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.soliapp.domain.IRepository
 import com.example.soliapp.common.ResponseState
 import com.example.soliapp.data.models.CountryData
+import com.example.soliapp.data.models.Holiday
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,6 +30,10 @@ class HolidayViewModel @Inject constructor(
             val result = repository.getHolidays(currentYear, countryData.cCode)
             _state.value = result
         }
+    }
+
+    fun saveFavItem(item: Holiday) {
+        TODO("Not yet implemented")
     }
 
 }

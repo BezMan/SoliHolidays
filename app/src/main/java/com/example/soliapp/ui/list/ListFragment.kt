@@ -97,6 +97,7 @@ class ListFragment : Fragment(), MainListAdapter.OnItemClickListener {
     }
 
     override fun onToggleFavoriteClick(item: Holiday, isChecked: Boolean) {
-//        Toast.makeText(requireContext(), "${item.name} , isChecked: $isChecked", Toast.LENGTH_LONG).show()
+        item.isFavorite = isChecked
+        viewModel.saveFavItem(item)
     }
 }

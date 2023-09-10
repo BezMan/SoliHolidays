@@ -17,6 +17,6 @@ data class Holiday(
     val localName: String,
     @PrimaryKey val name: String,
     // Other properties
-    val isFavorite: Boolean = false
+    var isFavorite: Boolean = false
 
 ): Parcelable

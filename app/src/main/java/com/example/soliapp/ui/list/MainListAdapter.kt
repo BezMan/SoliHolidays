@@ -20,6 +20,7 @@ class MainListAdapter internal constructor(private val listener: OnItemClickList
             binding.apply {
                 nameTextView.text = item.name
                 dateTextView.text = item.date
+                checkboxToggleButton.isChecked = item.isFavorite
                 checkboxToggleButton.setOnCheckedChangeListener { _, isChecked ->
                     listener.onToggleFavoriteClick(item, isChecked)
                 }
@@ -55,13 +56,24 @@ class MainListAdapter internal constructor(private val listener: OnItemClickList
 
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Holiday>() {
             override fun areItemsTheSame(old: Holiday, new: Holiday): Boolean {
-                return old.name == new.name
+                return old.name == new.name && old.date == new.date
             }
 
             override fun areContentsTheSame(old: Holiday, new: Holiday): Boolean {
-                return old == new
+                return false
             }
         }
     }
+
+    //methods preventing click on an item affecting different items//
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+    //methods preventing click on an item affecting different items//
+
 
 }
