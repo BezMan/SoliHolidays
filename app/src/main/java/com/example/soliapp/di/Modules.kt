@@ -1,23 +1,39 @@
 package com.example.soliapp.di
 
-import com.example.soliapp.HolidayRepository
-import com.example.soliapp.HolidayRepositoryImpl
+import android.app.Application
+import android.content.Context
+import android.telephony.TelephonyManager
+import androidx.room.Room
+import com.example.soliapp.IRepository
+import com.example.soliapp.RepositoryImpl
+import com.example.soliapp.data.AppDatabase
+import com.example.soliapp.data.CountryData
 import com.example.soliapp.data.HolidayApiService
-import com.example.soliapp.data.HolidayDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import java.util.Calendar
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+object AppModule {
 
     @Provides
-    fun provideBaseUrl(): String {
-        return "https://date.nager.at/"
+    @Singleton
+    fun provideCountryData(context: Application): CountryData {
+        val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        val cCode = telephonyManager.networkCountryIso
+        return CountryData(cCode)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideCurrentYear(): Int {
+        return Calendar.getInstance().get(Calendar.YEAR)
     }
 
     @Provides
@@ -43,10 +59,18 @@ object RepositoryModule {
     @Singleton
     fun provideHolidayRepository(
         holidayApiService: HolidayApiService,
-        holidayDao: HolidayDao
-    ): HolidayRepository {
-        return HolidayRepositoryImpl(holidayApiService, holidayDao)
+        database: AppDatabase
+    ): IRepository {
+        return RepositoryImpl(holidayApiService, database)
     }
 
-    // Other repository-related dependencies can be provided here
+    @Provides
+    fun provideAppDatabase(application: Application): AppDatabase {
+        return Room.databaseBuilder(
+            application,
+            AppDatabase::class.java,
+            "app_database"
+        ).build()
+    }
+
 }

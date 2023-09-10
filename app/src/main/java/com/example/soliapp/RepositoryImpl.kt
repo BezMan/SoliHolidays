@@ -1,8 +1,8 @@
 package com.example.soliapp
 
+import com.example.soliapp.data.AppDatabase
 import com.example.soliapp.data.Holiday
 import com.example.soliapp.data.HolidayApiService
-import com.example.soliapp.data.HolidayDao
 import com.example.soliapp.data.HolidayList
 import com.google.gson.Gson
 import java.io.IOException
@@ -10,10 +10,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class HolidayRepositoryImpl @Inject constructor(
+class RepositoryImpl @Inject constructor(
     private val holidayApiService: HolidayApiService,
-    private val holidayDao: HolidayDao
-) : HolidayRepository {
+    private val appDatabase: AppDatabase
+) : IRepository {
     override suspend fun getHolidays(year: Int, countryCode: String): List<Holiday> {
         try {
             val response = holidayApiService.fetchHolidays(year, countryCode)
