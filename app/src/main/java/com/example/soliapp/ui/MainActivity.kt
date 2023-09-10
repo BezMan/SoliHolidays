@@ -1,4 +1,4 @@
-package com.example.soliapp
+package com.example.soliapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.soliapp.R
 import com.example.soliapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

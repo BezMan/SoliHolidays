@@ -1,4 +1,4 @@
-package com.example.soliapp.data
+package com.example.soliapp.data.models
 
 import android.os.Parcelable
 import androidx.room.Entity

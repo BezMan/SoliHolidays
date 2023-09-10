@@ -1,7 +1,9 @@
-package com.example.soliapp
+package com.example.soliapp.data
 
-import com.example.soliapp.data.AppDatabase
-import com.example.soliapp.data.HolidayApiService
+import com.example.soliapp.domain.IRepository
+import com.example.soliapp.common.ResponseState
+import com.example.soliapp.data.db.AppDatabase
+import com.example.soliapp.data.network.HolidayApiService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -13,7 +15,7 @@ class RepositoryImpl @Inject constructor(
     private val holidayApiService: HolidayApiService,
     private val appDatabase: AppDatabase
 ) : IRepository {
-    override suspend fun getHolidays(year: Int, countryCode: String): LocationState {
+    override suspend fun getHolidays(year: Int, countryCode: String): ResponseState {
         val deferred = CoroutineScope(Dispatchers.IO).async {
             holidayApiService.fetchHolidays(year, countryCode)
         }

@@ -1,10 +1,12 @@
-package com.example.soliapp
+package com.example.soliapp.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.soliapp.data.CountryData
+import com.example.soliapp.domain.IRepository
+import com.example.soliapp.common.ResponseState
+import com.example.soliapp.data.models.CountryData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,13 +18,13 @@ class HolidayViewModel @Inject constructor(
     private val currentYear: Int
 ) : ViewModel() {
 
-    private val _state = MutableLiveData<LocationState>()
-    val state: LiveData<LocationState>
+    private val _state = MutableLiveData<ResponseState>()
+    val state: LiveData<ResponseState>
         get() = _state
 
     fun fetchData() {
         viewModelScope.launch {
-            _state.value = LocationState.Loading
+            _state.value = ResponseState.Loading
             // Fetch holidays for the current year and the determined country code
             val result = repository.getHolidays(currentYear, countryData.cCode)
             _state.value = result

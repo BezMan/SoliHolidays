@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.soliapp.ListFragment"
+        android:name="com.example.soliapp.ui.list.ListFragment"
         android:label="ListFragment"
         tools:layout="@layout/fragment_list" >
         <action
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.soliapp.DetailFragment"
+        android:name="com.example.soliapp.ui.detail.DetailFragment"
         android:label="DetailFragment"
         tools:layout="@layout/fragment_detail" />
 </navigation>

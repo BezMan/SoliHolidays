@@ -1,6 +1,7 @@
-package com.example.soliapp.data
+package com.example.soliapp.data.network
 
-import com.example.soliapp.LocationState
+import com.example.soliapp.common.ResponseState
+import com.example.soliapp.data.models.Holiday
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
@@ -14,7 +15,7 @@ class HolidayApiService @Inject constructor(private val okHttpClient: OkHttpClie
         private const val BASE_URL = "https://date.nager.at"
     }
 
-    fun fetchHolidays(year: Int, countryCode: String): LocationState {
+    fun fetchHolidays(year: Int, countryCode: String): ResponseState {
         val url = "$BASE_URL/api/v3/publicholidays/$year/$countryCode"
 
         val request = Request.Builder()
@@ -40,10 +41,10 @@ class HolidayApiService @Inject constructor(private val okHttpClient: OkHttpClie
             // Store holidays in Room database if needed
             //
 
-            return LocationState.Success(holidayList)
+            return ResponseState.Success(holidayList)
         } else {
 //                 Handle API error
-            return LocationState.Error("bad response")
+            return ResponseState.Error("bad response")
         }
     }
 }

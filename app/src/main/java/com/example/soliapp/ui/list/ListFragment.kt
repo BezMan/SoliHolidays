@@ -1,4 +1,4 @@
-package com.example.soliapp
+package com.example.soliapp.ui.list
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.soliapp.ui.HolidayViewModel
 import com.example.soliapp.databinding.FragmentListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope

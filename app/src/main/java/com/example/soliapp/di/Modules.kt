@@ -4,11 +4,11 @@ import android.app.Application
 import android.content.Context
 import android.telephony.TelephonyManager
 import androidx.room.Room
-import com.example.soliapp.IRepository
-import com.example.soliapp.RepositoryImpl
-import com.example.soliapp.data.AppDatabase
-import com.example.soliapp.data.CountryData
-import com.example.soliapp.data.HolidayApiService
+import com.example.soliapp.domain.IRepository
+import com.example.soliapp.data.RepositoryImpl
+import com.example.soliapp.data.db.AppDatabase
+import com.example.soliapp.data.models.CountryData
+import com.example.soliapp.data.network.HolidayApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
