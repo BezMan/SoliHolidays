@@ -10,7 +10,7 @@
         android:id="@+id/listFragment"
         android:name="com.example.soliapp.ui.list.ListFragment"
         android:label="ListFragment"
-        tools:layout="@layout/fragment_list" >
+        tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/action_listFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
@@ -20,5 +20,10 @@
         android:id="@+id/detailFragment"
         android:name="com.example.soliapp.ui.detail.DetailFragment"
         android:label="DetailFragment"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="holiday"
+            app:argType="com.example.soliapp.data.models.Holiday" />
+
+    </fragment>
 </navigation>

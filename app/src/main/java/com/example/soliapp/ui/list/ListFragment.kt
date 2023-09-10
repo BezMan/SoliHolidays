@@ -1,7 +1,6 @@
 package com.example.soliapp.ui.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.soliapp.R
 import com.example.soliapp.common.ResponseState
 import com.example.soliapp.data.models.Holiday
-import com.example.soliapp.ui.HolidayViewModel
 import com.example.soliapp.databinding.FragmentListBinding
+import com.example.soliapp.ui.HolidayViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -80,19 +78,15 @@ class ListFragment : Fragment(), MainListAdapter.OnItemClickListener {
             viewModel.fetchData()
         }
 
-        // Set item click listener to navigate to the DetailFragment
-        // For example:
-        // recyclerView.adapter.setOnItemClickListener { holiday ->
-        //     val action = ListFragmentDirections.actionListFragmentToDetailFragment(holiday)
-        //     findNavController().navigate(action)
-        // }
     }
 
     override fun onItemTextClick(item: Holiday) {
-        findNavController().navigate(R.id.action_listFragment_to_detailFragment)
+// Use Safe Args to navigate and pass the Holiday object
+        val action = ListFragmentDirections.actionListFragmentToDetailFragment(item)
+        findNavController().navigate(action)
     }
 
     override fun onToggleFavoriteClick(item: Holiday, isChecked: Boolean) {
-        TODO("Not yet implemented")
+//        Toast.makeText(requireContext(), "${item.name} , isChecked: $isChecked", Toast.LENGTH_LONG).show()
     }
 }

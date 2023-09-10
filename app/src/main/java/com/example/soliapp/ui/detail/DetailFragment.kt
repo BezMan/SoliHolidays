@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
+import com.example.soliapp.data.models.Holiday
 import com.example.soliapp.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,11 +27,15 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Receive the holiday data passed from the ListFragment using Safe Args
+        val args = DetailFragmentArgs.fromBundle(requireArguments())
+        val holiday: Holiday = args.holiday
+
         // val holiday = DetailFragmentArgs.fromBundle(requireArguments()).holiday
 
         // Use holiday data to populate UI elements in the DetailFragment
-        // binding.textViewHolidayName.text = holiday.name
-        // binding.textViewHolidayDate.text = holiday.date
+         binding.textViewCountryCodeValue.text = holiday.countryCode
+         binding.textViewHolidayNameValue.text = holiday.name
+         binding.textViewDateValue.text = holiday.date
         // ...
     }
 }

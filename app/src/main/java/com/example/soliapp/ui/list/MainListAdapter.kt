@@ -8,19 +8,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.soliapp.data.models.Holiday
 import com.example.soliapp.databinding.ListItemBinding
 
-class MainListAdapter internal constructor(context: OnItemClickListener) :
+class MainListAdapter internal constructor(private val listener: OnItemClickListener) :
     ListAdapter<Holiday, MainListAdapter.HolidayViewHolder>(DIFF_CALLBACK) {
 
-    private var listener: OnItemClickListener = context
 
     inner class HolidayViewHolder(private val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(holiday: Holiday) {
+        fun bind(item: Holiday) {
             // Bind holiday data to views in the layout
-            binding.nameTextView.text = holiday.name
-            binding.dateTextView.text = holiday.date
-            // Add other bindings as needed
+            binding.apply {
+                nameTextView.text = item.name
+                dateTextView.text = item.date
+                checkboxToggleButton.setOnCheckedChangeListener { _, isChecked ->
+                    listener.onToggleFavoriteClick(item, isChecked)
+                }
+                itemLayout.setOnClickListener {
+                    listener.onItemTextClick(item)
+                }
+            }
         }
     }
 

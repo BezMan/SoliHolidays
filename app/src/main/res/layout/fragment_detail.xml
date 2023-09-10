@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:gravity="center"
             android:padding="16dp">
 
             <!-- Property: Country Code -->
@@ -36,6 +37,32 @@
                 tools:text="AT"
                 android:textSize="18sp" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="10dp"
+                android:background="@android:color/holo_blue_dark"/>
+
+            <!-- Property: Country Code -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Holiday Name:"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewHolidayNameValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="name"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="10dp"
+                android:background="@android:color/holo_blue_dark"/>
+
             <!-- Property: Date -->
             <TextView
                 android:layout_width="wrap_content"
@@ -50,19 +77,6 @@
                 tools:text="2023-01-01"
                 android:textSize="18sp" />
 
-            <!-- Property: Fixed -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fixed:"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/textViewFixedValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="true"
-                android:textSize="18sp" />
 
             <!-- Continue adding TextViews for other properties as needed -->
 
