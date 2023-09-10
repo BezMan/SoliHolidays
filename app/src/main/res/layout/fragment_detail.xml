@@ -43,7 +43,7 @@
                 android:layout_margin="10dp"
                 android:background="@android:color/holo_blue_dark"/>
 
-            <!-- Property: Country Code -->
+            <!-- Property: name -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,6 +75,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="2023-01-01"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="10dp"
+                android:background="@android:color/holo_blue_dark"/>
+
+
+            <!-- Property: Favorite -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="is Favorite:"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="false"
                 android:textSize="18sp" />
 
 

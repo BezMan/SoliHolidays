@@ -60,15 +60,18 @@ class ListFragment : Fragment(), MainListAdapter.OnItemClickListener {
                     mainListAdapter.submitList(holidays)
                     // Hide any failure-related UI elements if previously displayed
                     binding.failureTextView.visibility = View.GONE
+                    binding.swipeRefreshLayout.isRefreshing = false
                 }
                 is ResponseState.Error -> {
                     // State is ERROR, display "FAILURE" text
                     mainListAdapter.submitList(emptyList()) // Clear the list
+                    binding.swipeRefreshLayout.isRefreshing = false
                     binding.failureTextView.visibility = View.VISIBLE
                     binding.failureTextView.text = "FAILURE: ${state.errorMessage}"
                 }
                 is ResponseState.Loading -> {
                     // State is LOADING, you can show a loading indicator here if desired
+                    binding.swipeRefreshLayout.isRefreshing = true
                     binding.failureTextView.visibility = View.GONE
                 }
             }
@@ -76,6 +79,13 @@ class ListFragment : Fragment(), MainListAdapter.OnItemClickListener {
 
         CoroutineScope(Dispatchers.IO).launch {
             viewModel.fetchData()
+        }
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                viewModel.fetchData()
+            }
+
         }
 
     }
