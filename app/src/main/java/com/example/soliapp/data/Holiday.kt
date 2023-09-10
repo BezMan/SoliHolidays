@@ -5,12 +5,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-class HolidayList : ArrayList<Holiday>()
-
 @Parcelize
 @Entity(tableName = "holiday")
 data class Holiday(
-    val counties: String? = null,
+//    val counties: String? = null,
     val countryCode: String,
     val date: String,
     val fixed: Boolean,

@@ -2,6 +2,8 @@ package com.example.soliapp.data
 
 import com.example.soliapp.LocationState
 import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonParser
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import javax.inject.Inject
@@ -23,7 +25,17 @@ class HolidayApiService @Inject constructor(private val okHttpClient: OkHttpClie
         if (response.isSuccessful) {
             val bodyString = response.body?.source()?.readString(Charsets.UTF_8)
 
-            val holidayList = Gson().fromJson(bodyString, HolidayList::class.java)
+// Parse the JSON string into a JSON array
+            val jsonArray: JsonArray = JsonParser.parseString(bodyString).asJsonArray
+
+            val holidayList = mutableListOf<Holiday>()
+// Iterate through the JSON array
+            for (jsonElement in jsonArray) {
+                // Convert each JSON element to a JSON object and add it to the list
+                val holiday = Gson().fromJson(jsonElement, Holiday::class.java)
+//                val jsonObject = jsonElement.asJsonObject
+                holidayList.add(holiday)
+            }
 
             // Store holidays in Room database if needed
             //
