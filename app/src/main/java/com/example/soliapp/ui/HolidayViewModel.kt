@@ -32,8 +32,16 @@ class HolidayViewModel @Inject constructor(
         }
     }
 
-    fun saveFavItem(item: Holiday) {
-        TODO("Not yet implemented")
+    fun saveFavorite(item: Holiday) {
+        viewModelScope.launch {
+            repository.saveFavorite(item)
+        }
+    }
+
+    fun removeFavorite(item: Holiday) {
+        viewModelScope.launch {
+            repository.removeFavorite(item)
+        }
     }
 
 }

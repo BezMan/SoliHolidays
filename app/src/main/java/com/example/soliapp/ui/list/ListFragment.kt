@@ -62,6 +62,7 @@ class ListFragment : Fragment(), MainListAdapter.OnItemClickListener {
                     binding.failureTextView.visibility = View.GONE
                     binding.swipeRefreshLayout.isRefreshing = false
                 }
+
                 is ResponseState.Error -> {
                     // State is ERROR, display "FAILURE" text
                     mainListAdapter.submitList(emptyList()) // Clear the list
@@ -69,6 +70,7 @@ class ListFragment : Fragment(), MainListAdapter.OnItemClickListener {
                     binding.failureTextView.visibility = View.VISIBLE
                     binding.failureTextView.text = "FAILURE: ${state.errorMessage}"
                 }
+
                 is ResponseState.Loading -> {
                     // State is LOADING, you can show a loading indicator here if desired
                     binding.swipeRefreshLayout.isRefreshing = true
@@ -98,6 +100,11 @@ class ListFragment : Fragment(), MainListAdapter.OnItemClickListener {
 
     override fun onToggleFavoriteClick(item: Holiday, isChecked: Boolean) {
         item.isFavorite = isChecked
-        viewModel.saveFavItem(item)
+        if (isChecked) {
+            viewModel.saveFavorite(item)
+        } else {
+            viewModel.removeFavorite(item)
+
+        }
     }
 }
