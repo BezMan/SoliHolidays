@@ -30,18 +30,22 @@ class RepositoryImpl @Inject constructor(
             } else {
                 withContext(Dispatchers.IO) {
                     // Perform database queries in IO dispatcher
-                    holidayList.forEach { holiday ->
-                        val favoriteByName = appDatabase.getFavoriteByName(holiday.localName)
-                        if (favoriteByName != null && favoriteByName.isFavorite) {
-                            holiday.isFavorite = true
-                        }
-                    }
+                    syncDataWithStorage(holidayList)
+                    ResponseState.Success(holidayList)
                 }
 
-                ResponseState.Success(holidayList)
             }
         } catch (e: Exception) {
             ResponseState.Error("Error: ${e.message}")
+        }
+    }
+
+    private fun syncDataWithStorage(holidayList: List<Holiday>) {
+        holidayList.forEach { holiday ->
+            val favoriteByName = appDatabase.getFavoriteByName(holiday.localName)
+            if (favoriteByName != null && favoriteByName.isFavorite) {
+                holiday.isFavorite = true
+            }
         }
     }
 

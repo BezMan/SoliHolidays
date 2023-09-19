@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.soliapp.data.models.Holiday
 import com.example.soliapp.databinding.ListItemBinding
 
-class MainListAdapter internal constructor(private val listener: OnItemClickListener) :
+class MainListAdapter (private val listener: OnItemClickListener) :
     ListAdapter<Holiday, MainListAdapter.HolidayViewHolder>(DIFF_CALLBACK) {
 
 

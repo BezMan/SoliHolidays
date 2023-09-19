@@ -27,8 +27,7 @@ class HolidayViewModel @Inject constructor(
         viewModelScope.launch {
             _state.value = ResponseState.Loading
             // Fetch holidays for the current year and the determined country code
-            val result = repository.getHolidays(currentYear, countryData.cCode)
-            _state.value = result
+            _state.value = repository.getHolidays(currentYear, countryData.cCode)
         }
     }
 
